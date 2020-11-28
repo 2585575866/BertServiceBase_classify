@@ -572,6 +572,7 @@ class BertWorker(Process):
                         client_id, raw_msg = sock.recv_multipart()
                         msg = jsonapi.loads(raw_msg)
                         logger.info(msg)
+
                         logger.info("message===="+"  ".join(msg))
                         logger.info('new job\tsocket: %d\tsize: %d\tclient: %s' % (sock_idx, len(msg), client_id))
                         # check if msg is a list of list, if yes consider the input is already tokenized
@@ -602,6 +603,8 @@ class BertWorker(Process):
                     'input_mask': (None, self.max_seq_len), #.shard(num_shards=4, index=4)
                     'input_type_ids': (None, self.max_seq_len)}).prefetch(self.prefetch_size))
 
+        aa = gen()
+        print(aa)
         return input_fn
 
 
